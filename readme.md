@@ -21,29 +21,29 @@ To run this project, you need a Kafka broker running locally. The easiest way to
 1.  Create a file named `docker-compose.yml` in the root of your project folder with the following content:
 
     ```yaml
-    version: '3'
-    services:
-      kafka:
-        image: confluentinc/cp-kafka:latest
-        container_name: kafka
-        ports:
-          - "9092:9092"
-        environment:
-          KAFKA_NODE_ID: 1
-          KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
-          KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092'
-          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-          KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-          KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-          KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-          KAFKA_PROCESS_ROLES: 'broker,controller'
-          KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:29093'
-          KAFKA_LISTENERS: 'PLAINTEXT://kafka:29092,CONTROLLER://kafka:29093,PLAINTEXT_HOST://0.0.0.0:9092'
-          KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
-          KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
-          KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
-          # Replace CLUSTER_ID with a unique base64 UUID using "bin/kafka-storage.sh random-uuid"
-          CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+        version: '3'
+        services:
+        kafka:
+            image: confluentinc/cp-kafka:latest
+            container_name: kafka
+            ports:
+            - "9092:9092"
+            environment:
+            KAFKA_NODE_ID: 1
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
+            KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092'
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+            KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+            KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+            KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+            KAFKA_PROCESS_ROLES: 'broker,controller'
+            KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:29093'
+            KAFKA_LISTENERS: 'PLAINTEXT://kafka:29092,CONTROLLER://kafka:29093,PLAINTEXT_HOST://0.0.0.0:9092'
+            KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+            KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+            KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+            # Replace CLUSTER_ID with a unique base64 UUID using "bin/kafka-storage.sh random-uuid"
+            CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
     ```
 
 2.  Start the Kafka services:
@@ -53,10 +53,10 @@ To run this project, you need a Kafka broker running locally. The easiest way to
 
 ## 2. Python Setup
 
-Install the required Python library `kafka-python` to allow your scripts to interact with the Kafka server.
+Install the required Python libraries from `requirements.txt` to allow your scripts to interact with the Kafka server.
 
 ```bash
-pip install kafka-python
+pip install -r requirements.txt
 ```
 
 ## 3. Running the Project
